@@ -1,5 +1,5 @@
 window.onload = function() {
-    createButtons(carArray, 'searchButton', '#buttonsArea');
+    createButtons(carArray, 'searchButton btn btn-outline-dark m-1', '#buttonsArea');
     console.log('hallo');
 
 }
@@ -15,6 +15,7 @@ function createButtons(carArray, classToAdd, areaToAddTo) {
     for (var i = 0; i < carArray.length; i++) {
         var a = $('<button>');
         a.addClass(classToAdd);
+        a.attr('type', 'button')
         a.attr('data-type', carArray[i]);
         a.text(carArray[i]);
         $(areaToAddTo).append(a)
@@ -26,7 +27,7 @@ function createButtons(carArray, classToAdd, areaToAddTo) {
 $(document).on('click', '.searchButton', function () {
     $("#searches").empty();
     var userInput = $(this).data('type');
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=IyX0EUSGUI6Aoqm2qN3tJz2Ep7uhfaMf&q=" + userInput + "&limit=5&offset=0&rating=G&lang=en";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=IyX0EUSGUI6Aoqm2qN3tJz2Ep7uhfaMf&q=" + userInput + "&limit=10&offset=0&rating=G&lang=en";
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -34,7 +35,7 @@ $(document).on('click', '.searchButton', function () {
         for (var i = 0; i < response.data.length; i++) {
             var searchDiv = $('<div class="search-item">');
             var rating = response.data[i].rating;
-            var p = $('<p>').text('rating:' + rating);
+            var p = $('<p>').text('Rating:' + rating);
             
             // URL for still and animated GIFs
             var animated = response.data[i].images.downsized.url;
@@ -46,8 +47,8 @@ $(document).on('click', '.searchButton', function () {
             image.attr('data-animates', animated);
             image.attr('data-state', 'still');
             image.addClass('searchImage');
-            searchDiv.append(p);
             searchDiv.append(image);
+            searchDiv.append(p);
             $('#searches').append(searchDiv);
         }
 
@@ -69,12 +70,14 @@ $(document).on('click', '.searchImage', function () {
 
 // create new buttons from input
 
-$(document).on('click', 'input', function () {
+$(document).on('click', '#submitButton', function () {
     event.preventDefault();
     var newCar = $('input').val().trim();
 
     carArray.push(newCar);
-    createButtons(carArray, 'searchButton', '#buttonsArea');
+
+    
+    createButtons(carArray, 'searchButton btn btn-outline-dark m-1', '#buttonsArea');
     console.log(carArray)
 
 });

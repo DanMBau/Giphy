@@ -6,24 +6,29 @@
     <title>Giphy page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <div id="buttonsArea">
-
+            <div class="col">
+                <div class="btn-group" role="group" aria-label="ajaxButtons">
+                    <div id="buttonsArea"></div>
                 </div>
 
+
                 <form id="search-form">
-                    Add a button!! <br>
-                    <input type="text" id="search-input"><br>
-                    <input type="submit" value="Submit">
+                    <br>
+                    <br>
+
+                    <input type="text" class="form-control" id="search-input" placeholder="create a new button">
+                    <br>
+                    <br>
+                    <input id="submitButton" type="submit" value="Submit" class="button btn p-2">
                 </form>
             </div>
-            <div class="col-md-6">
+            <div class="col">
                 <div id="searches">
 
                 </div>
